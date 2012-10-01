@@ -1,29 +1,51 @@
-#IAInfiniteGridView
+//
+//  IAViewController.m
+//  Infinite
+//
+//  Created by Ikhsan Assaat on 10/1/12.
+//  Copyright (c) 2012 3kunci. All rights reserved.
+//
 
+#import "IAViewController.h"
 
-##Infinite grid view with UITableView-esque data source methods
+#define kNumberLabelTag 9999
 
-If you want to have an infinite scroll view with our own grids, just drag IAInfiniteGridView, set and implement its data source, and your good to go!
+@interface IAViewController ()
 
-##Features
-* Support circular mode as well
-* Familiar data source method to implement
-* Using reuse queue for better performance
+@property (weak, nonatomic) IBOutlet IAInfiniteGridView *gridView;
+- (IBAction)switchCircularMode:(id)sender;
 
-##How To
+@end
 
-* Drag the `IAInfiniteGridView` to your project
-* Add the class via code or in Interface Builder
-* Set your view controller to conform `IAInfiniteGridDataSource`
-* Set its data source
-  * via code ``` objective-c
-	infiniteGridView.dataSource = self
-``` 
-  * or via IB by ctrl+drag it to your view controller and add as its `dataSource`
-* Implement the required data source methods
+@implementation IAViewController
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+	// Do any additional setup after loading the view, typically from a nib.
+}
 
-``` objective-c
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+- (BOOL)shouldAutorotate {
+    return YES;
+}
+
+- (NSUInteger)supportedInterfaceOrientations {
+    return UIInterfaceOrientationMaskLandscape;
+}
+
+- (IBAction)switchCircularMode:(id)sender {
+    UISwitch *circularModeSwitch = (UISwitch *)sender;
+    
+    [self.gridView setCircular:circularModeSwitch.isOn];
+    [self.gridView jumpToIndex:0];
+}
+
+#pragma mark - Data Source Methods
+
 - (UIView *)infiniteGridView:(IAInfiniteGridView *)gridView forIndex:(NSInteger)gridIndex {
     UIView *grid = [self.gridView dequeueReusableGrid];
     if (grid == nil) {
@@ -39,10 +61,11 @@ If you want to have an infinite scroll view with our own grids, just drag IAInfi
         [grid addSubview:numberLabel];
     }
     
-    // set properties 
+    // set properties    
     NSInteger mods = gridIndex % [self numberOfInfiniteGrids];
     if (mods < 0) mods += [self numberOfInfiniteGrids];
     CGFloat red = mods * (1 / (CGFloat)[self numberOfInfiniteGrids]);
+    
     grid.backgroundColor = [UIColor colorWithRed:red green:0.0 blue:0.0 alpha:1.0];
     
     UILabel *numberLabel = (UILabel *)[grid viewWithTag:kNumberLabelTag];
@@ -51,34 +74,16 @@ If you want to have an infinite scroll view with our own grids, just drag IAInfi
     return grid;
 }
 
-// this method is used for circular mode, not very useful for infinite mode
 - (NSUInteger)numberOfInfiniteGrids {
     return 10;
 }
 
-- (CGSize)infiniteGridSize {    
+- (CGSize)infiniteGridSize {
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        return CGSizeMake(300.0, 300.0);
+    }
+    
     return CGSizeMake(150.0, 150.0);
 }
-```
 
-##To Do 
-* Horizontal scrolling
-* Custom paging enabled
-* Custom identifier
-
-## Dependencies
- [iOS 6.0+] - Build with iOS 6 with ARC enabled
-
-##License
-
-IAInfiniteGridView is available under the MIT License.
-
-## Credits
-
-IAInfiniteGridView was created by [Ikhsan Assaat](https://github.com/ixnixnixn) 
-
-Feel free to contact me,
-
-- [@ixnixnixn] (http://twitter.com/ixnixnixn)
-- ixnixnixn@yahoo.com
-- http://id.linkedin.com/in/ixnixnixn
+@end
