@@ -81,5 +81,5 @@ IAInfiniteGridView was created by [Ikhsan Assaat](https://github.com/ixnixnixn)
 Feel free to contact me,
 
 - [@ixnixnixn] (http://twitter.com/ixnixnixn)
-- ikhsan.assaat@gmail.com
+- ixnixnixn@yahoo.com
 - http://id.linkedin.com/in/ixnixnixn
