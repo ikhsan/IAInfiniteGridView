@@ -15,13 +15,10 @@ If you want to have an infinite scroll view with our own grids, just drag IAInfi
 * Drag the `IAInfiniteGridView` to your project
 * Add the class via code or in Interface Builder
 * Set your view controller to conform `IAInfiniteGridDataSource`
-* Set its data source
-  * via code ``` objective-c
-	infiniteGridView.dataSource = self
+* Set its data source via code ```	infiniteGridView.dataSource = self
 ``` 
-  * or via IB by ctrl+drag it to your view controller and add as its `dataSource`
+or via IB by ctrl+drag it to your view controller and add as its `dataSource`
 * Implement the required data source methods
-
 
 ``` objective-c
 - (UIView *)infiniteGridView:(IAInfiniteGridView *)gridView forIndex:(NSInteger)gridIndex {
@@ -60,6 +57,9 @@ If you want to have an infinite scroll view with our own grids, just drag IAInfi
     return CGSizeMake(150.0, 150.0);
 }
 ```
+
+* Scroll the heck out of it
+* For more clarity, please review the code in the sample project `Infinite`
 
 ##To Do 
 * Horizontal scrolling
