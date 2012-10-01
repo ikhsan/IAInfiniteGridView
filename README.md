@@ -58,8 +58,9 @@ or via IB by ctrl+drag it to your view controller and add as its `dataSource`
 }
 ```
 
-* Scroll the heck out of it
-* For more clarity, please review the code in the sample project `Infinite`
+* Scroll the heck out of it!
+
+For more clarity, please review the code in the sample project `Infinite`.
 
 ##To Do 
 * Horizontal scrolling
