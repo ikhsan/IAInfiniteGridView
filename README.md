@@ -1,5 +1,8 @@
 #IAInfiniteGridView
 
+![image](http://dl.dropbox.com/u/10627916/IAInfiniteGridView-1.png)
+![image](http://dl.dropbox.com/u/10627916/IAInfiniteGridView-2.png)
+
 
 ##Infinite grid view with UITableView-esque data source methods
 
