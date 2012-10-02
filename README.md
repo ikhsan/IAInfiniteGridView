@@ -6,7 +6,8 @@
 If you want to have an infinite scroll view with our own grids, just drag IAInfiniteGridView, set and implement its data source, and your good to go!
 
 ##Features
-* Support circular mode as well
+* Circular mode
+* Custom paging
 * Familiar data source method to implement
 * Using reuse queue for better performance
 
@@ -64,7 +65,7 @@ For more clarity, please review the code in the sample project `Infinite`.
 
 ##To Do 
 * Horizontal scrolling
-* Custom paging enabled
+* Custom paging improvements
 * Custom identifier
 
 ## Dependencies

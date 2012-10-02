@@ -21,6 +21,7 @@
 @interface IAInfiniteGridView : UIScrollView <UIScrollViewDelegate>
 
 @property (nonatomic, getter = isCircular) BOOL circular;
+@property (nonatomic, getter = isPaging) BOOL paging;
 @property (nonatomic, assign) IBOutlet id<IAInfiniteGridDataSource> dataSource;
 
 - (id)dequeueReusableGrid;

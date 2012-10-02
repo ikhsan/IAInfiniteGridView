@@ -18,16 +18,25 @@
                                     <outlet property="dataSource" destination="bnd-q8-hae" id="Yo9-AD-orl"/>
                                 </connections>
                             </view>
-                            <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7VX-Ku-w6T">
+                            <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="7VX-Ku-w6T">
                                 <color key="onTintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <action selector="switchCircularMode:" destination="bnd-q8-hae" eventType="valueChanged" id="TrV-c5-yBs"/>
                                 </connections>
                             </switch>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Circular Mode" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eek-hA-Giy">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="xtM-Fe-JuZ"/>
-                                </constraints>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Circular" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eek-hA-Giy">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                                <color key="shadowColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            </label>
+                            <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="gMX-bE-blr">
+                                <color key="onTintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="switchPaging:" destination="bnd-q8-hae" eventType="valueChanged" id="bnf-gH-FbF"/>
+                                </connections>
+                            </switch>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Paging" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fg9-bC-Slr">
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -39,10 +48,14 @@
                             <constraint firstItem="7VX-Ku-w6T" firstAttribute="top" secondItem="Eek-hA-Giy" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="0Gu-hQ-job"/>
                             <constraint firstItem="Eek-hA-Giy" firstAttribute="centerX" secondItem="7VX-Ku-w6T" secondAttribute="centerX" type="default" id="1Zs-cs-Qc9"/>
                             <constraint firstItem="DbI-zR-idU" firstAttribute="top" secondItem="QIR-Fk-gev" secondAttribute="top" constant="224" id="1fG-hy-uhQ"/>
-                            <constraint firstAttribute="bottom" secondItem="7VX-Ku-w6T" secondAttribute="bottom" constant="93" id="6Qp-AO-9Nc"/>
-                            <constraint firstItem="Eek-hA-Giy" firstAttribute="centerX" secondItem="DbI-zR-idU" secondAttribute="centerX" type="default" id="NAs-HJ-9XG"/>
-                            <constraint firstItem="Eek-hA-Giy" firstAttribute="centerX" secondItem="QIR-Fk-gev" secondAttribute="centerX" type="default" id="PSZ-Lq-0I0"/>
+                            <constraint firstAttribute="trailing" secondItem="gMX-bE-blr" secondAttribute="trailing" constant="394" id="9ef-3w-N6i"/>
+                            <constraint firstItem="fg9-bC-Slr" firstAttribute="baseline" secondItem="Eek-hA-Giy" secondAttribute="baseline" type="default" id="Dgg-v6-ASZ"/>
+                            <constraint firstAttribute="bottom" secondItem="7VX-Ku-w6T" secondAttribute="bottom" constant="86" id="cLp-9K-gxW"/>
+                            <constraint firstItem="gMX-bE-blr" firstAttribute="top" secondItem="fg9-bC-Slr" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="dLE-LQ-v2Y"/>
                             <constraint firstItem="DbI-zR-idU" firstAttribute="leading" secondItem="QIR-Fk-gev" secondAttribute="leading" constant="62" id="epw-vf-4aH"/>
+                            <constraint firstItem="gMX-bE-blr" firstAttribute="centerX" secondItem="fg9-bC-Slr" secondAttribute="centerX" type="default" id="iBm-Gz-J8B"/>
+                            <constraint firstItem="7VX-Ku-w6T" firstAttribute="leading" secondItem="QIR-Fk-gev" secondAttribute="leading" constant="394" id="khj-mm-Vx5"/>
+                            <constraint firstItem="DbI-zR-idU" firstAttribute="centerX" secondItem="QIR-Fk-gev" secondAttribute="centerX" type="default" id="xKW-5g-4Y5"/>
                             <constraint firstItem="DbI-zR-idU" firstAttribute="centerY" secondItem="QIR-Fk-gev" secondAttribute="centerY" type="default" id="ycQ-9Z-b3F"/>
                         </constraints>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
@@ -68,6 +81,7 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/IAViewController.h"/>
             <relationships>
                 <relationship kind="action" name="switchCircularMode:"/>
+                <relationship kind="action" name="switchPaging:"/>
                 <relationship kind="outlet" name="gridView" candidateClass="IAInfiniteGridView"/>
             </relationships>
         </class>

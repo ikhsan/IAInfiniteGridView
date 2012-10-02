@@ -44,6 +44,13 @@
     [self.gridView jumpToIndex:0];
 }
 
+- (IBAction)switchPaging:(id)sender {
+    UISwitch *pagingModeSwitch = (UISwitch *)sender;
+    
+    [self.gridView setPaging:pagingModeSwitch.isOn];
+    [self.gridView jumpToIndex:0];
+}
+
 #pragma mark - Data Source Methods
 
 - (UIView *)infiniteGridView:(IAInfiniteGridView *)gridView forIndex:(NSInteger)gridIndex {

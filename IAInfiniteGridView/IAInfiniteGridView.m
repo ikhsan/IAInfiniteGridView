@@ -216,6 +216,39 @@
 
 #pragma mark - Scroll View Delegate Methods
 
+// custom paging
+- (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView {
+    if (self.isPaging) {
+        CGPoint velocity = [scrollView.panGestureRecognizer velocityInView:[self superview]];
+        
+        UIView *grid = [self gridViewAtPoint:scrollView.contentOffset];
+        
+        CGPoint destinationPoint;
+        if (velocity.x > 0) {
+            destinationPoint = [grid convertPoint:CGPointMake(0, 0.0) toView:scrollView];
+        } else {
+            destinationPoint = [grid convertPoint:CGPointMake(grid.bounds.size.width, 0.0) toView:scrollView];
+        }
+        
+        [scrollView setContentOffset:destinationPoint animated:YES];
+    }
+}
 
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+    if (self.isPaging) {
+        if (!decelerate) {
+            UIView *grid = [self gridViewAtPoint:scrollView.contentOffset];
+            CGPoint localPoint = [scrollView convertPoint:scrollView.contentOffset toView:grid];
+            
+            CGPoint destinationPoint;
+            if (localPoint.x > (grid.bounds.size.width / 2)) {
+                destinationPoint = [grid convertPoint:CGPointMake(grid.bounds.size.width, 0.0) toView:scrollView];
+            } else {
+                destinationPoint = [grid convertPoint:CGPointMake(0.0, 0.0) toView:scrollView];
+            }
+            [UIView animateWithDuration:.15 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{scrollView.contentOffset = destinationPoint;} completion:nil];
+        }
+    }
+}
 
 @end

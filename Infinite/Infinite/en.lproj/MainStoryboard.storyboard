@@ -21,16 +21,25 @@
                                     <outlet property="dataSource" destination="2" id="Jpe-wG-8Hf"/>
                                 </connections>
                             </view>
-                            <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="6ff-V9-TpP">
+                            <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Mht-Qf-3vX">
                                 <color key="onTintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
-                                    <action selector="switchCircularMode:" destination="2" eventType="valueChanged" id="UMk-h5-yu2"/>
+                                    <action selector="switchCircularMode:" destination="2" eventType="valueChanged" id="oyI-qb-SQD"/>
                                 </connections>
                             </switch>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Circular Mode" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ckq-uq-Efc">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="Io4-qP-dT7"/>
-                                </constraints>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Paging" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AEd-ua-jkD">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                                <color key="shadowColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            </label>
+                            <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="AN9-B7-8Zt">
+                                <color key="onTintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="switchPaging:" destination="2" eventType="valueChanged" id="Dfj-uM-ecx"/>
+                                </connections>
+                            </switch>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Circular" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9QS-gK-cxo">
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -39,13 +48,17 @@
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="Ckq-uq-Efc" firstAttribute="centerX" secondItem="n2N-2h-IYr" secondAttribute="centerX" type="default" id="28k-mp-1tU"/>
-                            <constraint firstItem="Ckq-uq-Efc" firstAttribute="centerX" secondItem="3" secondAttribute="centerX" type="default" id="GMg-wV-H67"/>
-                            <constraint firstItem="6ff-V9-TpP" firstAttribute="top" secondItem="Ckq-uq-Efc" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="HpE-Tv-c9L"/>
+                            <constraint firstItem="AEd-ua-jkD" firstAttribute="centerX" secondItem="AN9-B7-8Zt" secondAttribute="centerX" type="default" id="1tF-zG-zyu"/>
+                            <constraint firstItem="n2N-2h-IYr" firstAttribute="centerX" secondItem="3" secondAttribute="centerX" type="default" id="8R2-yh-cEY"/>
+                            <constraint firstAttribute="bottom" secondItem="Mht-Qf-3vX" secondAttribute="bottom" constant="32" id="B1G-3L-c0r"/>
                             <constraint firstAttribute="bottom" secondItem="n2N-2h-IYr" secondAttribute="bottom" constant="113" id="Kkj-Tu-Zbe"/>
-                            <constraint firstAttribute="bottom" secondItem="6ff-V9-TpP" secondAttribute="bottom" constant="36" id="S1h-0v-rrb"/>
+                            <constraint firstItem="Mht-Qf-3vX" firstAttribute="top" secondItem="9QS-gK-cxo" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="PSq-JY-fDa"/>
+                            <constraint firstItem="AN9-B7-8Zt" firstAttribute="top" secondItem="9QS-gK-cxo" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="QCQ-uF-Z7a"/>
+                            <constraint firstAttribute="trailing" secondItem="AN9-B7-8Zt" secondAttribute="trailing" constant="142" id="bht-0R-EhF"/>
                             <constraint firstItem="n2N-2h-IYr" firstAttribute="top" secondItem="3" secondAttribute="top" constant="37" id="cC6-sS-IQb"/>
-                            <constraint firstItem="Ckq-uq-Efc" firstAttribute="centerX" secondItem="6ff-V9-TpP" secondAttribute="centerX" type="default" id="uDt-Dw-4Xt"/>
+                            <constraint firstItem="9QS-gK-cxo" firstAttribute="baseline" secondItem="AEd-ua-jkD" secondAttribute="baseline" type="default" id="jui-lc-LtP"/>
+                            <constraint firstItem="Mht-Qf-3vX" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="143" id="tM6-rb-UOB"/>
+                            <constraint firstItem="9QS-gK-cxo" firstAttribute="centerX" secondItem="Mht-Qf-3vX" secondAttribute="centerX" type="default" id="uuS-Dd-oav"/>
                         </constraints>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
@@ -70,6 +83,7 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/IAViewController.h"/>
             <relationships>
                 <relationship kind="action" name="switchCircularMode:"/>
+                <relationship kind="action" name="switchPaging:"/>
                 <relationship kind="outlet" name="gridView" candidateClass="IAInfiniteGridView"/>
             </relationships>
         </class>
