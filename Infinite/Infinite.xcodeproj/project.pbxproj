@@ -20,6 +20,8 @@
 		4D439B75161943690031326A /* IAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D439B74161943690031326A /* IAViewController.m */; };
 		4D439B8816194A800031326A /* MainStoryboard~iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D439B8616194A800031326A /* MainStoryboard~iPad.storyboard */; };
 		4D439B9C16194CC00031326A /* IAInfiniteGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D439B9B16194CC00031326A /* IAInfiniteGridView.m */; };
+		4D6078BA162BB886005694E3 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D6078B9162BB886005694E3 /* icon.png */; };
+		4D6078BD162BB887005694E3 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D6078BC162BB887005694E3 /* icon@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +44,8 @@
 		4D439B8716194A800031326A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = "Infinite/en.lproj/MainStoryboard~iPad.storyboard"; sourceTree = "<group>"; };
 		4D439B9A16194CC00031326A /* IAInfiniteGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAInfiniteGridView.h; sourceTree = "<group>"; };
 		4D439B9B16194CC00031326A /* IAInfiniteGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAInfiniteGridView.m; sourceTree = "<group>"; };
+		4D6078B9162BB886005694E3 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = ../icon.png; sourceTree = "<group>"; };
+		4D6078BC162BB887005694E3 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon@2x.png"; path = "../icon@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +107,8 @@
 		4D439B5F161943690031326A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4D6078BC162BB887005694E3 /* icon@2x.png */,
+				4D6078B9162BB886005694E3 /* icon.png */,
 				4D439B60161943690031326A /* Infinite-Info.plist */,
 				4D439B61161943690031326A /* InfoPlist.strings */,
 				4D439B64161943690031326A /* main.m */,
@@ -182,6 +188,8 @@
 				4D439B6F161943690031326A /* Default-568h@2x.png in Resources */,
 				4D439B72161943690031326A /* MainStoryboard.storyboard in Resources */,
 				4D439B8816194A800031326A /* MainStoryboard~iPad.storyboard in Resources */,
+				4D6078BA162BB886005694E3 /* icon.png in Resources */,
+				4D6078BD162BB887005694E3 /* icon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
