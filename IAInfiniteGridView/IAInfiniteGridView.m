@@ -2,6 +2,7 @@
 //  IAInfiniteGridView.m
 //  Infinite
 //
+//  Edited by Bonifatio Hartono on 10/22/12
 //  Created by Ikhsan Assaat on 10/1/12.
 //  Copyright (c) 2012 3kunci. All rights reserved.
 //
@@ -219,21 +220,34 @@
 // custom paging
 - (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView {
     if (self.isPaging) {
-        CGPoint velocity = [scrollView.panGestureRecognizer velocityInView:[self superview]];
-        
-        UIView *grid = [self gridViewAtPoint:scrollView.contentOffset];
-        
-        CGPoint destinationPoint;
-        if (velocity.x > 0) {
-            destinationPoint = [grid convertPoint:CGPointMake(0, 0.0) toView:scrollView];
-        } else {
-            destinationPoint = [grid convertPoint:CGPointMake(grid.bounds.size.width, 0.0) toView:scrollView];
-        }
-        
-        [scrollView setContentOffset:destinationPoint animated:YES];
+//        CGPoint velocity = [scrollView.panGestureRecognizer velocityInView:[self superview]];
+//        
+//        UIView *grid = [self gridViewAtPoint:scrollView.contentOffset];
+//        
+//        CGPoint destinationPoint;
+//        if (velocity.x > 0) {
+//            destinationPoint = [grid convertPoint:CGPointMake(0, 0.0) toView:scrollView];
+//        } else {
+//            destinationPoint = [grid convertPoint:CGPointMake(grid.bounds.size.width, 0.0) toView:scrollView];
+//        }
+//        
+//        [scrollView setContentOffset:destinationPoint animated:YES];
     }
 }
 
+- (void) scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+    UIView *grid = [self gridViewAtPoint:scrollView.contentOffset];
+    CGPoint localPoint = [scrollView convertPoint:scrollView.contentOffset toView:grid];
+    
+    CGPoint destinationPoint;
+    if (localPoint.x > (grid.bounds.size.width / 2)) {
+        destinationPoint = [grid convertPoint:CGPointMake(grid.bounds.size.width, 0.0) toView:scrollView];
+    } else {
+        destinationPoint = [grid convertPoint:CGPointMake(0.0, 0.0) toView:scrollView];
+    }
+    [UIView animateWithDuration:.45 delay:0.0 options:UIViewAnimationOptionCurveLinear animations:^{scrollView.contentOffset = destinationPoint;} completion:nil];
+
+}
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
     if (self.isPaging) {
         if (!decelerate) {
