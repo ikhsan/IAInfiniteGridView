@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2840" systemVersion="11G56" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2840" systemVersion="11G63" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="2">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1926"/>
     </dependencies>
@@ -12,34 +12,39 @@
                         <rect key="frame" x="0.0" y="20" width="480" height="300"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view clipsSubviews="YES" contentMode="scaleToFill" horizontalCompressionResistancePriority="1" translatesAutoresizingMaskIntoConstraints="NO" id="n2N-2h-IYr" customClass="IAInfiniteGridView">
+                            <view clipsSubviews="YES" contentMode="scaleToFill" horizontalCompressionResistancePriority="1" id="n2N-2h-IYr" customClass="IAInfiniteGridView">
+                                <rect key="frame" x="15" y="37" width="450" height="150"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="450" type="user" id="vcS-ro-w2V"/>
-                                </constraints>
                                 <connections>
                                     <outlet property="dataSource" destination="2" id="Jpe-wG-8Hf"/>
                                 </connections>
                             </view>
-                            <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Mht-Qf-3vX">
+                            <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="Mht-Qf-3vX">
+                                <rect key="frame" x="143" y="241" width="79" height="27"/>
                                 <color key="onTintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <action selector="switchCircularMode:" destination="2" eventType="valueChanged" id="oyI-qb-SQD"/>
                                 </connections>
                             </switch>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Paging" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AEd-ua-jkD">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Paging" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="AEd-ua-jkD">
+                                <rect key="frame" x="271" y="211" width="57" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                                 <color key="shadowColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             </label>
-                            <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="AN9-B7-8Zt">
+                            <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="AN9-B7-8Zt">
+                                <rect key="frame" x="261" y="241" width="79" height="27"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <color key="onTintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <action selector="switchPaging:" destination="2" eventType="valueChanged" id="Dfj-uM-ecx"/>
                                 </connections>
                             </switch>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Circular" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9QS-gK-cxo">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Circular" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9QS-gK-cxo">
+                                <rect key="frame" x="149" y="211" width="65" height="22"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -47,19 +52,6 @@
                             </label>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="AEd-ua-jkD" firstAttribute="centerX" secondItem="AN9-B7-8Zt" secondAttribute="centerX" type="default" id="1tF-zG-zyu"/>
-                            <constraint firstItem="n2N-2h-IYr" firstAttribute="centerX" secondItem="3" secondAttribute="centerX" type="default" id="8R2-yh-cEY"/>
-                            <constraint firstAttribute="bottom" secondItem="Mht-Qf-3vX" secondAttribute="bottom" constant="32" id="B1G-3L-c0r"/>
-                            <constraint firstAttribute="bottom" secondItem="n2N-2h-IYr" secondAttribute="bottom" constant="113" id="Kkj-Tu-Zbe"/>
-                            <constraint firstItem="Mht-Qf-3vX" firstAttribute="top" secondItem="9QS-gK-cxo" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="PSq-JY-fDa"/>
-                            <constraint firstItem="AN9-B7-8Zt" firstAttribute="top" secondItem="9QS-gK-cxo" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="QCQ-uF-Z7a"/>
-                            <constraint firstAttribute="trailing" secondItem="AN9-B7-8Zt" secondAttribute="trailing" constant="142" id="bht-0R-EhF"/>
-                            <constraint firstItem="n2N-2h-IYr" firstAttribute="top" secondItem="3" secondAttribute="top" constant="37" id="cC6-sS-IQb"/>
-                            <constraint firstItem="9QS-gK-cxo" firstAttribute="baseline" secondItem="AEd-ua-jkD" secondAttribute="baseline" type="default" id="jui-lc-LtP"/>
-                            <constraint firstItem="Mht-Qf-3vX" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="143" id="tM6-rb-UOB"/>
-                            <constraint firstItem="9QS-gK-cxo" firstAttribute="centerX" secondItem="Mht-Qf-3vX" secondAttribute="centerX" type="default" id="uuS-Dd-oav"/>
-                        </constraints>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
@@ -86,9 +78,6 @@
                 <relationship kind="action" name="switchPaging:"/>
                 <relationship kind="outlet" name="gridView" candidateClass="IAInfiniteGridView"/>
             </relationships>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

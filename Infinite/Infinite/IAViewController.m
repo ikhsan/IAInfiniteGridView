@@ -37,6 +37,10 @@
     return UIInterfaceOrientationMaskLandscape;
 }
 
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
+    return UIInterfaceOrientationIsLandscape(toInterfaceOrientation);
+}
+
 - (IBAction)switchCircularMode:(id)sender {
     UISwitch *circularModeSwitch = (UISwitch *)sender;
     
