@@ -23,8 +23,8 @@ If you want to have an infinite scroll view with our own grids, just drag IAInfi
 * Set its data source via code ```	infiniteGridView.dataSource = self
 ``` 
 or via IB by ctrl+drag it to your view controller and add as its `dataSource`
-* Implement the required data source methods
 
+* Implement the required data source methods
 
 ``` objective-c
 - (UIView *)infiniteGridView:(IAInfiniteGridView *)gridView forIndex:(NSInteger)gridIndex {
