@@ -18,6 +18,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="2" id="Jpe-wG-8Hf"/>
+                                    <outlet property="gridDelegate" destination="2" id="wfd-3Y-RFS"/>
                                 </connections>
                             </view>
                             <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="Mht-Qf-3vX">
@@ -69,6 +70,7 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/IAInfiniteGridView.h"/>
             <relationships>
                 <relationship kind="outlet" name="dataSource"/>
+                <relationship kind="outlet" name="gridDelegate"/>
             </relationships>
         </class>
         <class className="IAViewController" superclassName="UIViewController">

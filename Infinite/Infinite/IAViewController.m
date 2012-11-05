@@ -76,7 +76,6 @@
     NSInteger mods = gridIndex % [self numberOfInfiniteGrids];
     if (mods < 0) mods += [self numberOfInfiniteGrids];
     CGFloat red = mods * (1 / (CGFloat)[self numberOfInfiniteGrids]);
-    
     grid.backgroundColor = [UIColor colorWithRed:red green:0.0 blue:0.0 alpha:1.0];
     
     UILabel *numberLabel = (UILabel *)[grid viewWithTag:kNumberLabelTag];
@@ -96,7 +95,7 @@
     
     return CGSizeMake(150.0, 150.0);
 }
-- (void)infiniteGridView:(IAInfiniteGridView *)gridView didSelectRowAtIndex:(NSInteger)gridIndex {
-    NSLog(@"Index: %i", gridIndex);
+- (void)infiniteGridView:(IAInfiniteGridView *)gridView didSelectGridAtIndex:(NSInteger)gridIndex {
+    NSLog(@"Grid selected : %i", gridIndex);
 }
 @end

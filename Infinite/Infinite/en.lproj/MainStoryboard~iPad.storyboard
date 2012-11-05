@@ -17,6 +17,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="bnd-q8-hae" id="Yo9-AD-orl"/>
+                                    <outlet property="gridDelegate" destination="bnd-q8-hae" id="t9G-wK-Yb7"/>
                                 </connections>
                             </view>
                             <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="7VX-Ku-w6T">
@@ -66,12 +67,14 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/IAInfiniteGridView.h"/>
             <relationships>
                 <relationship kind="outlet" name="dataSource"/>
+                <relationship kind="outlet" name="gridDelegate"/>
             </relationships>
         </class>
         <class className="IAViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/IAViewController.h"/>
             <relationships>
                 <relationship kind="action" name="switchCircularMode:"/>
+                <relationship kind="action" name="switchPaging:"/>
                 <relationship kind="outlet" name="gridView" candidateClass="IAInfiniteGridView"/>
             </relationships>
         </class>

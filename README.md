@@ -13,6 +13,7 @@ If you want to have an infinite scroll view with our own grids, just drag IAInfi
 * Custom set paging enabled
 * Familiar data source method to implement
 * Using reuse queue for better performance
+* Also, delegate method to accept did select grid
 
 ##How To
 
@@ -23,6 +24,7 @@ If you want to have an infinite scroll view with our own grids, just drag IAInfi
 ``` 
 or via IB by ctrl+drag it to your view controller and add as its `dataSource`
 * Implement the required data source methods
+
 
 ``` objective-c
 - (UIView *)infiniteGridView:(IAInfiniteGridView *)gridView forIndex:(NSInteger)gridIndex {
@@ -72,7 +74,7 @@ For more clarity, please review the code in the sample project `Infinite`.
 * Custom identifier
 
 ## Dependencies
- [iOS 6.0+] - Build with iOS 6 with ARC enabled
+ [iOS 5.0+] - Build with iOS 5 with ARC enabled
 
 ##License
 

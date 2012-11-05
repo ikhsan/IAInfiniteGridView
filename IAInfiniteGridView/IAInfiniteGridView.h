@@ -15,7 +15,12 @@
 - (UIView *)infiniteGridView:(IAInfiniteGridView *)gridView forIndex:(NSInteger)gridIndex;
 - (NSUInteger)numberOfInfiniteGrids;
 - (CGSize)infiniteGridSize;
-- (void)infiniteGridView:(IAInfiniteGridView *)gridView didSelectRowAtIndex:(NSInteger)gridIndex;
+
+@end
+
+@protocol IAInfiniteGridDelegate <NSObject>
+
+- (void)infiniteGridView:(IAInfiniteGridView *)gridView didSelectGridAtIndex:(NSInteger)gridIndex;
 
 @end
 
@@ -24,6 +29,7 @@
 @property (nonatomic, getter = isCircular) BOOL circular;
 @property (nonatomic, getter = isPaging) BOOL paging;
 @property (nonatomic, assign) IBOutlet id<IAInfiniteGridDataSource> dataSource;
+@property (nonatomic, assign) IBOutlet id<IAInfiniteGridDelegate> gridDelegate;
 
 - (id)dequeueReusableGrid;
 - (void)jumpToIndex:(NSInteger)gridIndex;
