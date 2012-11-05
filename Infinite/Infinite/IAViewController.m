@@ -2,6 +2,7 @@
 //  IAViewController.m
 //  Infinite
 //
+//  Edited by Bonifatio Hartono on 10/22/12
 //  Created by Ikhsan Assaat on 10/1/12.
 //  Copyright (c) 2012 3kunci. All rights reserved.
 //
@@ -52,6 +53,7 @@
     UISwitch *pagingModeSwitch = (UISwitch *)sender;
     
     [self.gridView setPaging:pagingModeSwitch.isOn];
+    [self.gridView setPagingEnabled:pagingModeSwitch.isOn];
     [self.gridView jumpToIndex:0];
 }
 
