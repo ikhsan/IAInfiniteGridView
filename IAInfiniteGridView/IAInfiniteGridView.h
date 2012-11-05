@@ -15,6 +15,7 @@
 - (UIView *)infiniteGridView:(IAInfiniteGridView *)gridView forIndex:(NSInteger)gridIndex;
 - (NSUInteger)numberOfInfiniteGrids;
 - (CGSize)infiniteGridSize;
+- (void)infiniteGridView:(IAInfiniteGridView *)gridView didSelectRowAtIndex:(NSInteger)gridIndex;
 
 @end
 

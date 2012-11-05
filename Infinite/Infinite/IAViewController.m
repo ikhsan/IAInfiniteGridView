@@ -96,5 +96,7 @@
     
     return CGSizeMake(150.0, 150.0);
 }
-
+- (void)infiniteGridView:(IAInfiniteGridView *)gridView didSelectRowAtIndex:(NSInteger)gridIndex {
+    NSLog(@"Index: %i", gridIndex);
+}
 @end
