@@ -28,6 +28,7 @@
     self.circular = NO;
     self.currentIndex = 0;
     self.delegate = self;
+    
     [self addSubview:self.containerView];
     
     [self setShowsHorizontalScrollIndicator:NO];
@@ -57,6 +58,22 @@
     self.contentSize = CGSizeMake(5 * totalGrids * gridSize.width, gridSize.height);
     
     self.containerView.frame = CGRectMake(0, 0, self.contentSize.width, self.contentSize.height);
+}
+
+- (void) touchesEnded: (NSSet *) touches withEvent: (UIEvent *) event
+{
+    // If not dragging, send event to next responder
+    if (!self.dragging) {
+        UITouch *touch = [touches anyObject];
+        CGPoint newPoint = [touch locationInView:self];
+        UIView *result = [self gridViewAtPoint:newPoint];
+        if (self.dataSource && [self.dataSource respondsToSelector:@selector(infiniteGridView:didSelectRowAtIndex:)]) {
+            [self.dataSource infiniteGridView:self didSelectRowAtIndex:result.tag];
+        }
+        [self.nextResponder touchesEnded: touches withEvent:event]; 
+    } else {
+        [super touchesEnded: touches withEvent: event];
+    }
 }
 
 - (void)jumpToIndex:(NSInteger)gridIndex {
