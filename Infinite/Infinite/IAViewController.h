@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "IAInfiniteGridView.h"
 
-@interface IAViewController : UIViewController <IAInfiniteGridDataSource>
+@interface IAViewController : UIViewController <IAInfiniteGridDataSource, IAInfiniteGridDelegate>
 
 @end
