@@ -14,7 +14,7 @@
 
 - (UIView *)infiniteGridView:(IAInfiniteGridView *)gridView forIndex:(NSInteger)gridIndex;
 - (NSUInteger)numberOfInfiniteGrids;
-- (CGSize)infiniteGridSize;
+- (CGSize)infiniteGridSizeForIndex:(NSInteger)gridIndex;
 
 @end
 
@@ -34,5 +34,6 @@
 - (id)dequeueReusableGrid;
 - (void)jumpToIndex:(NSInteger)gridIndex;
 - (UIView *)gridViewAtPoint:(CGPoint)point;
+- (void)reloadData;
 
 @end

@@ -60,12 +60,13 @@
 - (UIView *)infiniteGridView:(IAInfiniteGridView *)gridView forIndex:(NSInteger)gridIndex {
     UIView *grid = [self.gridView dequeueReusableGrid];
     if (grid == nil) {
-        CGRect frame = CGRectMake(0.0, 0.0, [self infiniteGridSize].width, [self infiniteGridSize].height);
+		CGSize gridSize = [self infiniteGridSizeForIndex:gridIndex];
+        CGRect frame = CGRectMake(0.0, 0.0, gridSize.width, gridSize.height);
         grid = [[UIView alloc] initWithFrame:frame];
         
         UILabel *numberLabel = [[UILabel alloc] initWithFrame:frame];
         [numberLabel setBackgroundColor:[UIColor clearColor]];
-        [numberLabel setFont:[UIFont boldSystemFontOfSize:([self infiniteGridSize].height * .4)]];
+        [numberLabel setFont:[UIFont boldSystemFontOfSize:(gridSize.height * .4)]];
         [numberLabel setTextColor:[UIColor whiteColor]];
         [numberLabel setTextAlignment:NSTextAlignmentCenter];
         [numberLabel setTag:kNumberLabelTag];
@@ -88,7 +89,7 @@
     return 10;
 }
 
-- (CGSize)infiniteGridSize {
+- (CGSize)infiniteGridSizeForIndex:(NSInteger)gridIndex {
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         return CGSizeMake(300.0, 300.0);
     }

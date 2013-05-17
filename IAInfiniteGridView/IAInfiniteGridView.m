@@ -53,11 +53,17 @@
 }
 
 - (void)awakeFromNib {
-    CGSize gridSize = [self.dataSource infiniteGridSize];
-    NSUInteger totalGrids = [self.dataSource numberOfInfiniteGrids];
-    self.contentSize = CGSizeMake(5 * totalGrids * gridSize.width, gridSize.height);
-    
-    self.containerView.frame = CGRectMake(0, 0, self.contentSize.width, self.contentSize.height);
+	[self calculateContentSize];
+}
+
+- (void)calculateContentSize {
+	if (!self.dataSource) return;
+	
+	CGSize gridSize = [self.dataSource infiniteGridSizeForIndex:0];
+	NSUInteger totalGrids = [self.dataSource numberOfInfiniteGrids];
+	self.contentSize = CGSizeMake(5 * totalGrids * gridSize.width, gridSize.height);
+	
+	self.containerView.frame = CGRectMake(0, 0, self.contentSize.width, self.contentSize.height);
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -93,6 +99,12 @@
     id grid = [self.gridReusableQueue lastObject];
     [self.gridReusableQueue removeObject:grid];
     return grid;
+}
+
+- (void)reloadData {
+	if (!self.dataSource) return;
+	[self calculateContentSize];
+	[self jumpToIndex:0];
 }
 
 #pragma mark - Layout
