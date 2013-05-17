@@ -15,8 +15,6 @@
 @property (strong, nonatomic) NSMutableArray *gridReusableQueue;
 @property (strong, nonatomic) UIView *containerView;
 
-- (void)tileGridsFromMinX:(CGFloat)minimumVisibleX toMaxX:(CGFloat)maximumVisibleX;
-
 @end
 
 @implementation IAInfiniteGridView
@@ -85,17 +83,40 @@
 }
 
 - (void)jumpToIndex:(NSInteger)gridIndex {
-    if (self.isCircular && gridIndex < 0) return;
-    [self setContentOffset:CGPointMake(0, self.contentOffset.y) animated:NO];
-    
-    CGRect visibleBounds = [self convertRect:self.bounds toView:self.containerView];
-    CGFloat minimumVisibleX = CGRectGetMinX(visibleBounds);
-    CGFloat maximumVisibleX = CGRectGetMaxX(visibleBounds);
-    
-    [self.visibleGrids removeAllObjects];
-    self.currentIndex = gridIndex;
-    
-    [self tileGridsFromMinX:minimumVisibleX toMaxX:maximumVisibleX];
+    if ((self.isCircular && gridIndex < 0) &&
+		(self.isCircular && gridIndex >= [self.dataSource numberOfInfiniteGrids]))
+		return;
+	
+	UIView *gridView = [self getViewFromVisibleCellsWithIndex:gridIndex];
+	if (gridView) {
+		CGPoint destinationPoint = [gridView convertPoint:CGPointMake(0.0, 0.0) toView:self];
+		[self setContentOffset:destinationPoint animated:YES];
+	} else {
+		[self setContentOffset:CGPointMake(0, self.contentOffset.y) animated:NO];
+		
+		CGRect visibleBounds = [self convertRect:self.bounds toView:self.containerView];
+		CGFloat minimumVisibleX = CGRectGetMinX(visibleBounds);
+		CGFloat maximumVisibleX = CGRectGetMaxX(visibleBounds);
+		
+		[self.visibleGrids removeAllObjects];
+		self.currentIndex = gridIndex;
+		
+		[self tileGridsFromMinX:minimumVisibleX toMaxX:maximumVisibleX];
+	}
+}
+
+- (UIView *)getViewFromVisibleCellsWithIndex:(NSInteger)gridIndex {
+	__block UIView *gridView = nil;
+	[self.visibleGrids enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+		UIView *visibleGridView = (UIView *)obj;
+		
+		if (visibleGridView.tag == gridIndex) {
+			gridView = visibleGridView;
+			*stop = YES;
+		}
+	}];
+	
+	return gridView;
 }
 
 - (id)dequeueReusableGrid {
@@ -256,11 +277,6 @@
 
 #pragma mark - Scroll View Delegate Methods
 
-// override to scroll only horizontally
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-	[scrollView setContentOffset:CGPointMake(scrollView.contentOffset.x, 0.0)];
-}
-
 // custom paging
 - (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView {
     if (self.isPaging) {
@@ -270,7 +286,7 @@
         
         CGPoint destinationPoint;
         if (velocity.x > 0) {
-            destinationPoint = [grid convertPoint:CGPointMake(0, 0.0) toView:scrollView];
+            destinationPoint = [grid convertPoint:CGPointMake(0.0, 0.0) toView:scrollView];
         } else {
             destinationPoint = [grid convertPoint:CGPointMake(grid.bounds.size.width, 0.0) toView:scrollView];
         }

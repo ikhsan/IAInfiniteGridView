@@ -105,6 +105,7 @@
 }
 
 - (void)infiniteGridView:(IAInfiniteGridView *)gridView didSelectGridAtIndex:(NSInteger)gridIndex {
-    NSLog(@"Grid selected : %i", gridIndex);
+	[gridView jumpToIndex:gridIndex];
 }
+
 @end
