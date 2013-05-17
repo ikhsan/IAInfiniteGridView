@@ -87,22 +87,16 @@
 		(self.isCircular && gridIndex >= [self.dataSource numberOfGridsInInfiniteGridView:self]))
 		return;
 	
-	UIView *gridView = [self getViewFromVisibleCellsWithIndex:gridIndex];
-	if (gridView) {
-		CGPoint destinationPoint = [gridView convertPoint:CGPointMake(0.0, 0.0) toView:self];
-		[self setContentOffset:destinationPoint animated:YES];
-	} else {
-		[self setContentOffset:CGPointMake(0, self.contentOffset.y) animated:NO];
-		
-		CGRect visibleBounds = [self convertRect:self.bounds toView:self.containerView];
-		CGFloat minimumVisibleX = CGRectGetMinX(visibleBounds);
-		CGFloat maximumVisibleX = CGRectGetMaxX(visibleBounds);
-		
-		[self.visibleGrids removeAllObjects];
-		self.currentIndex = gridIndex;
-		
-		[self tileGridsFromMinX:minimumVisibleX toMaxX:maximumVisibleX];
-	}
+	[self setContentOffset:CGPointMake(0, self.contentOffset.y) animated:NO];
+	
+	CGRect visibleBounds = [self convertRect:self.bounds toView:self.containerView];
+	CGFloat minimumVisibleX = CGRectGetMinX(visibleBounds);
+	CGFloat maximumVisibleX = CGRectGetMaxX(visibleBounds);
+	
+	[self.visibleGrids removeAllObjects];
+	self.currentIndex = gridIndex;
+	
+	[self tileGridsFromMinX:minimumVisibleX toMaxX:maximumVisibleX];
 }
 
 - (UIView *)getViewFromVisibleCellsWithIndex:(NSInteger)gridIndex {
