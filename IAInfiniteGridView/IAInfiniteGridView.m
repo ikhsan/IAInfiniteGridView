@@ -60,14 +60,12 @@
 	if (!self.dataSource) return;
 	
 	NSUInteger totalGrids = [self.dataSource numberOfInfiniteGrids];
-	CGSize totalGridSize = CGSizeZero;
+	CGSize totalGridSize = CGSizeMake(0.0, self.bounds.size.height);
 	for (int i = 0; i < totalGrids; i++) {
-		CGSize gridSize = [self.dataSource infiniteGridSizeForIndex:i];
-		totalGridSize.width += gridSize.width;
-		totalGridSize.height = MAX(gridSize.height, totalGridSize.height);
+		totalGridSize.width += [self.dataSource infiniteGridWidthForIndex:i];
 	}
 	
-	self.contentSize = CGSizeMake(3 * totalGridSize.width, totalGridSize.height);
+	self.contentSize = CGSizeMake(totalGridSize.width, totalGridSize.height);
 	self.containerView.frame = CGRectMake(0, 0, self.contentSize.width, self.contentSize.height);
 }
 
@@ -108,8 +106,17 @@
 
 - (void)reloadData {
 	if (!self.dataSource) return;
+	
 	[self calculateContentSize];
 	[self jumpToIndex:0];
+}
+
+- (void)setDataSource:(id<IAInfiniteGridDataSource>)dataSource {
+	if (dataSource) {
+		_dataSource = dataSource;
+		
+		[self calculateContentSize];
+	}
 }
 
 #pragma mark - Layout
@@ -173,13 +180,13 @@
     
     CGRect frame = grid.frame;
     frame.origin.x = rightEdge;
-    frame.origin.y = self.containerView.bounds.size.height - frame.size.height;
+    frame.origin.y = 0; //self.containerView.bounds.size.height - frame.size.height;
     grid.frame = frame;
     
     return CGRectGetMaxX(frame);
 }
 
-- (CGFloat)placeNewLabelOnLeft:(CGFloat)leftEdge {
+- (CGFloat)placeNewGridOnLeft:(CGFloat)leftEdge {
     UIView *firstGrid = [self.visibleGrids objectAtIndex:0];
     NSInteger previousIndex = firstGrid.tag - 1;
     if ([self isCircular])
@@ -191,7 +198,7 @@
     
     CGRect frame = grid.frame;
     frame.origin.x = leftEdge - frame.size.width;
-    frame.origin.y = self.containerView.bounds.size.height - frame.size.height;
+    frame.origin.y = 0; //self.containerView.bounds.size.height - frame.size.height;
     grid.frame = frame;
     
     return CGRectGetMinX(frame);
@@ -211,7 +218,7 @@
     UIView *firstGrid = [self.visibleGrids objectAtIndex:0];
     CGFloat leftEdge = CGRectGetMinX(firstGrid.frame);
     while (leftEdge > minimumVisibleX) {
-        leftEdge = [self placeNewLabelOnLeft:leftEdge];
+        leftEdge = [self placeNewGridOnLeft:leftEdge];
     }
     
     lastGrid = [self.visibleGrids lastObject];
@@ -248,6 +255,11 @@
 }
 
 #pragma mark - Scroll View Delegate Methods
+
+// override to scroll only horizontally
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+	[scrollView setContentOffset:CGPointMake(scrollView.contentOffset.x, 0.0)];
+}
 
 // custom paging
 - (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView {
