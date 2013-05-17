@@ -57,10 +57,10 @@
 - (void)calculateContentSize {
 	if (!self.dataSource) return;
 	
-	NSUInteger totalGrids = [self.dataSource numberOfInfiniteGrids];
+	NSUInteger totalGrids = [self.dataSource numberOfGridsInInfiniteGridView:self];
 	CGSize totalGridSize = CGSizeMake(0.0, self.bounds.size.height);
 	for (int i = 0; i < totalGrids; i++) {
-		totalGridSize.width += [self.dataSource infiniteGridWidthForIndex:i];
+		totalGridSize.width += [self.dataSource infiniteGridView:self widthForIndex:i];
 	}
 	
 	self.contentSize = CGSizeMake(totalGridSize.width, totalGridSize.height);
@@ -84,7 +84,7 @@
 
 - (void)jumpToIndex:(NSInteger)gridIndex {
     if ((self.isCircular && gridIndex < 0) &&
-		(self.isCircular && gridIndex >= [self.dataSource numberOfInfiniteGrids]))
+		(self.isCircular && gridIndex >= [self.dataSource numberOfGridsInInfiniteGridView:self]))
 		return;
 	
 	UIView *gridView = [self getViewFromVisibleCellsWithIndex:gridIndex];
@@ -125,19 +125,16 @@
     return grid;
 }
 
+- (void)setDataSource:(id<IAInfiniteGridDataSource>)dataSource {
+	_dataSource = dataSource;
+	[self calculateContentSize];
+}
+
 - (void)reloadData {
 	if (!self.dataSource) return;
 	
 	[self calculateContentSize];
 	[self jumpToIndex:0];
-}
-
-- (void)setDataSource:(id<IAInfiniteGridDataSource>)dataSource {
-	if (dataSource) {
-		_dataSource = dataSource;
-		
-		[self calculateContentSize];
-	}
 }
 
 #pragma mark - Layout
@@ -192,7 +189,7 @@
         UIView *lastGrid = [self.visibleGrids lastObject];
         NSInteger nextIndex = lastGrid.tag + 1;
         if ([self isCircular])
-            nextIndex = (nextIndex >= [self.dataSource numberOfInfiniteGrids]) ? 0 : nextIndex;
+            nextIndex = (nextIndex >= [self.dataSource numberOfGridsInInfiniteGridView:self]) ? 0 : nextIndex;
         self.currentIndex = nextIndex;
     }
     
@@ -211,7 +208,7 @@
     UIView *firstGrid = [self.visibleGrids objectAtIndex:0];
     NSInteger previousIndex = firstGrid.tag - 1;
     if ([self isCircular])
-        previousIndex = (previousIndex < 0) ? [self.dataSource numberOfInfiniteGrids]-1 : previousIndex;
+        previousIndex = (previousIndex < 0) ? [self.dataSource numberOfGridsInInfiniteGridView:self]-1 : previousIndex;
     self.currentIndex = previousIndex;
     
     UIView *grid = [self insertGridWithIndex:self.currentIndex];

@@ -60,7 +60,7 @@
 - (UIView *)infiniteGridView:(IAInfiniteGridView *)gridView forIndex:(NSInteger)gridIndex {
     UIView *grid = [self.gridView dequeueReusableGrid];
 	
-	CGFloat gridWidth = [self infiniteGridWidthForIndex:gridIndex];
+	CGFloat gridWidth = [self infiniteGridView:gridView widthForIndex:gridIndex];
 	CGRect frame = CGRectMake(0.0, 0.0, gridWidth, gridView.bounds.size.height);
 	
 	UILabel *numberLabel;
@@ -81,9 +81,9 @@
 	}
     
     // set properties    
-    NSInteger mods = gridIndex % [self numberOfInfiniteGrids];
-    if (mods < 0) mods += [self numberOfInfiniteGrids];
-    CGFloat red = mods * (1 / (CGFloat)[self numberOfInfiniteGrids]);
+    NSInteger mods = gridIndex % [self numberOfGridsInInfiniteGridView:gridView];
+    if (mods < 0) mods += [self numberOfGridsInInfiniteGridView:gridView];
+    CGFloat red = mods * (1 / (CGFloat)[self numberOfGridsInInfiniteGridView:gridView]);
     grid.backgroundColor = [UIColor colorWithRed:red green:0.0 blue:0.0 alpha:1.0];
     
     // set text
@@ -92,11 +92,11 @@
     return grid;
 }
 
-- (NSUInteger)numberOfInfiniteGrids {
-    return 10;
+- (NSUInteger)numberOfGridsInInfiniteGridView:(IAInfiniteGridView *)gridView {
+	return 10;
 }
 
-- (CGFloat)infiniteGridWidthForIndex:(NSInteger)gridIndex {
+- (CGFloat)infiniteGridView:(IAInfiniteGridView *)gridView widthForIndex:(NSInteger)gridIndex {
 	if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         return 300.0;
     }

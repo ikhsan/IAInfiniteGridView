@@ -13,13 +13,14 @@
 @protocol IAInfiniteGridDataSource <NSObject>
 
 - (UIView *)infiniteGridView:(IAInfiniteGridView *)gridView forIndex:(NSInteger)gridIndex;
-- (NSUInteger)numberOfInfiniteGrids;
-- (CGFloat)infiniteGridWidthForIndex:(NSInteger)gridIndex;
+- (NSUInteger)numberOfGridsInInfiniteGridView:(IAInfiniteGridView *)gridView;
+- (CGFloat)infiniteGridView:(IAInfiniteGridView *)gridView widthForIndex:(NSInteger)gridIndex;
 
 @end
 
 @protocol IAInfiniteGridDelegate <NSObject>
 
+@optional
 - (void)infiniteGridView:(IAInfiniteGridView *)gridView didSelectGridAtIndex:(NSInteger)gridIndex;
 
 @end
