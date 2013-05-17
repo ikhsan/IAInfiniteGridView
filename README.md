@@ -80,7 +80,7 @@ For more clarity, please review the code in the sample project `Infinite`.
 
 IAInfiniteGridView is available under the MIT License.
 
-Copyright (c) 2012 Ikhsan Assaat
+Copyright (c) 2013 Ikhsan Assaat
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
