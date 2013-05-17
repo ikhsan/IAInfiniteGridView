@@ -59,10 +59,15 @@
 - (void)calculateContentSize {
 	if (!self.dataSource) return;
 	
-	CGSize gridSize = [self.dataSource infiniteGridSizeForIndex:0];
 	NSUInteger totalGrids = [self.dataSource numberOfInfiniteGrids];
-	self.contentSize = CGSizeMake(5 * totalGrids * gridSize.width, gridSize.height);
+	CGSize totalGridSize = CGSizeZero;
+	for (int i = 0; i < totalGrids; i++) {
+		CGSize gridSize = [self.dataSource infiniteGridSizeForIndex:i];
+		totalGridSize.width += gridSize.width;
+		totalGridSize.height = MAX(gridSize.height, totalGridSize.height);
+	}
 	
+	self.contentSize = CGSizeMake(3 * totalGridSize.width, totalGridSize.height);
 	self.containerView.frame = CGRectMake(0, 0, self.contentSize.width, self.contentSize.height);
 }
 
