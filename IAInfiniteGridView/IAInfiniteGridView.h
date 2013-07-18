@@ -21,6 +21,7 @@
 @protocol IAInfiniteGridDelegate <NSObject>
 
 @optional
+- (void)infiniteGridView:(IAInfiniteGridView *)gridView didScrollToPage:(NSInteger)pageIndex;
 - (void)infiniteGridView:(IAInfiniteGridView *)gridView didSelectGridAtIndex:(NSInteger)gridIndex;
 
 @end

@@ -14,6 +14,7 @@
 @property (strong, nonatomic) NSMutableArray *visibleGrids;
 @property (strong, nonatomic) NSMutableArray *gridReusableQueue;
 @property (strong, nonatomic) UIView *containerView;
+@property (nonatomic, assign) NSInteger currentPageIndex;
 
 @end
 
@@ -267,6 +268,18 @@
 }
 
 #pragma mark - Scroll View Delegate Methods
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if (self.isPaging) {
+        if ([self.gridDelegate respondsToSelector:@selector(infiniteGridView:didScrollToPage:)]) {
+            UIView *grid = [self gridViewAtPoint:scrollView.contentOffset];
+            if (grid.tag != self.currentPageIndex) {
+                self.currentPageIndex = grid.tag;
+                [self.gridDelegate infiniteGridView:self didScrollToPage:grid.tag];
+            }
+        }
+    }
+}
 
 // custom paging
 - (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView {
