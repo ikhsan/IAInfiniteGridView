@@ -29,26 +29,34 @@ or via IB by ctrl+drag it to your view controller and add as its `dataSource`
 ``` objective-c
 - (UIView *)infiniteGridView:(IAInfiniteGridView *)gridView forIndex:(NSInteger)gridIndex {
     UIView *grid = [self.gridView dequeueReusableGrid];
+	
+	CGFloat gridWidth = [self infiniteGridView:gridView widthForIndex:gridIndex];
+	CGRect frame = CGRectMake(0.0, 0.0, gridWidth, gridView.bounds.size.height);
+	
+	UILabel *numberLabel;
     if (grid == nil) {
-        CGRect frame = CGRectMake(0.0, 0.0, [self infiniteGridSize].width, [self infiniteGridSize].height);
-        grid = [[UIView alloc] initWithFrame:frame];
+		grid = [[UIView alloc] initWithFrame:frame];
         
-        UILabel *numberLabel = [[UILabel alloc] initWithFrame:frame];
+        numberLabel = [[UILabel alloc] initWithFrame:frame];
         [numberLabel setBackgroundColor:[UIColor clearColor]];
-        [numberLabel setFont:[UIFont boldSystemFontOfSize:([self infiniteGridSize].height * .4)]];
         [numberLabel setTextColor:[UIColor whiteColor]];
+		[numberLabel setFont:[UIFont boldSystemFontOfSize:(gridView.bounds.size.height * .4)]];
         [numberLabel setTextAlignment:NSTextAlignmentCenter];
         [numberLabel setTag:kNumberLabelTag];
         [grid addSubview:numberLabel];
-    }
+    } else {
+		grid.frame = frame;
+		numberLabel = (UILabel *)[grid viewWithTag:kNumberLabelTag];
+		numberLabel.frame = frame;
+	}
     
-    // set properties 
-    NSInteger mods = gridIndex % [self numberOfInfiniteGrids];
-    if (mods < 0) mods += [self numberOfInfiniteGrids];
-    CGFloat red = mods * (1 / (CGFloat)[self numberOfInfiniteGrids]);
+    // set properties    
+    NSInteger mods = gridIndex % [self numberOfGridsInInfiniteGridView:gridView];
+    if (mods < 0) mods += [self numberOfGridsInInfiniteGridView:gridView];
+    CGFloat red = mods * (1 / (CGFloat)[self numberOfGridsInInfiniteGridView:gridView]);
     grid.backgroundColor = [UIColor colorWithRed:red green:0.0 blue:0.0 alpha:1.0];
     
-    UILabel *numberLabel = (UILabel *)[grid viewWithTag:kNumberLabelTag];
+    // set text
     [numberLabel setText:[NSString stringWithFormat:@"[%d]", gridIndex]];
     
     return grid;
