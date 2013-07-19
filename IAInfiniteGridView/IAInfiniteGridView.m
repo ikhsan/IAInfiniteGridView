@@ -64,7 +64,7 @@
 		totalGridSize.width += [self.dataSource infiniteGridView:self widthForIndex:i];
 	}
 	
-	self.contentSize = CGSizeMake(totalGridSize.width, totalGridSize.height);
+	self.contentSize = CGSizeMake(totalGridSize.width * 2, totalGridSize.height);
 	self.containerView.frame = CGRectMake(0, 0, self.contentSize.width, self.contentSize.height);
 }
 
@@ -255,9 +255,7 @@
 
 - (UIView *)gridViewAtPoint:(CGPoint)point {
     __block UIView *gridView = nil;
-    [self.visibleGrids enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        UIView *visibleGridView = (UIView *)obj;
-        
+    [self.visibleGrids enumerateObjectsUsingBlock:^(UIView *visibleGridView, NSUInteger idx, BOOL *stop) {        
         if (CGRectContainsPoint(visibleGridView.frame, point)) {
             gridView = visibleGridView;
             *stop = YES;
@@ -270,13 +268,11 @@
 #pragma mark - Scroll View Delegate Methods
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    if (self.isPaging) {
-        if ([self.gridDelegate respondsToSelector:@selector(infiniteGridView:didScrollToPage:)]) {
-            UIView *grid = [self gridViewAtPoint:scrollView.contentOffset];
-            if (grid.tag != self.currentPageIndex) {
-                self.currentPageIndex = grid.tag;
-                [self.gridDelegate infiniteGridView:self didScrollToPage:grid.tag];
-            }
+    if ([self.gridDelegate respondsToSelector:@selector(infiniteGridView:didScrollToPage:)]) {
+        UIView *grid = [self gridViewAtPoint:scrollView.contentOffset];
+        if (grid && grid.tag != self.currentPageIndex) {
+            self.currentPageIndex = grid.tag;
+            [self.gridDelegate infiniteGridView:self didScrollToPage:grid.tag];
         }
     }
 }

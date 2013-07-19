@@ -108,4 +108,8 @@
 	NSLog(@"grid index : %d", gridIndex);
 }
 
+- (void)infiniteGridView:(IAInfiniteGridView *)gridView didScrollToPage:(NSInteger)pageIndex {
+    NSLog(@"scroll to page : %d", pageIndex);
+}
+
 @end
